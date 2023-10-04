@@ -11,6 +11,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './styles.css';
 import RespectReducedMotion from '@/components/RespectReducedMotion';
+import { cookies } from 'next/headers';
 
 const mainFont = Work_Sans({
   subsets: ['latin'],
@@ -25,16 +26,15 @@ const monoFont = Spline_Sans_Mono({
   variable: '--font-family-mono',
 });
 
-function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = 'light';
+async function RootLayout({ children,  }) {
+  const theme = cookies().get('joy-of-react-blog-theme')?.value ?? 'light'; 
 
   return (
     <RespectReducedMotion>
       <html
         lang="en"
         className={clsx(mainFont.variable, monoFont.variable)}
-        data-color-theme={theme}
+        data-theme={theme}
         style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
       >
         <body>

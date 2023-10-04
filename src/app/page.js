@@ -13,7 +13,6 @@ async function Home() {
         Latest Content:
       </h1>
 
-      {/* TODO: Iterate over the data read from the file system! */}
       {blogPosts.map(p => (
         <BlogSummaryCard
         key={p.slug}
